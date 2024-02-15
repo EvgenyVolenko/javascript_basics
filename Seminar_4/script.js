@@ -61,21 +61,19 @@
 //     console.log(i);
 // }
 
-// for (let i = 1; i < 100; i++) {
-//     if (i % 2 !== 0) {
+// for (let i = 2; i < 100; i += 2) {
 //         console.log(i);
-//     }
 // }
 
 // for (let i = 100; i >= 0; i--) {
 //     console.log(i);
 // }
 
-let num = 3;
+let num = 4;
 let i = 0;
 
 while (num < 1000) {
-    num = num * 3;
+    num *= 3;
     i++;
 }
 
@@ -97,35 +95,44 @@ console.log(`Число ${num}. Количество итераций ${i}`);
 //     }
 // }
 
+// arr[index] > 3 && arr[index] < 10 ? console.log(arr[index]) : null;
+
 let sum = null;
 
-for (let i = 2; i < 101; i++) {
-    if (i % 2 === 0) {
-        sum = sum + i;
-    }
+for (let i = 2; i < 101; i += 2) {
+    sum += i;
 }
 console.log(sum);
 
 sum = null;
 let arr = [2, 5, 9, 3, 1, 4];
 for (let index = 0; index < arr.length; index++) {
-    sum = sum + arr[index];
+    sum += arr[index];
 }
 console.log(sum);
 
+console.log(arr.reduce((acc, cur) => acc + cur, 5));
+
 sum = '-';
 for (let index = 1; index < 10; index++) {
-    sum = sum + index + '-';
+    sum += `${index}-`;
 }
 console.log(sum);
 
 arr = [2, 5, 9, 0, 3, 1, 4];
-for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === 0) {
-        break;
-    }
-    console.log(arr[i]);
+let index = 0;
+while (arr[index] !== 0 && index < arr.length) {
+    console.log(arr[index]);
+    index++;
 }
+console.log(index);
+
+// for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] === 0) {
+//         break;
+//     }
+//     console.log(arr[i]);
+// }
 
 // Задание 5(тайминг 25 минут)
 // 1. Пусть у нас дан массив состоящий из 10 элементов с произвольными числами.Давайте переберем его циклом и числа, которые делятся на
@@ -140,11 +147,9 @@ for (let i = 0; i < arr1.length; i++) {
     if (arr1[i] % 2 === 0) {
         arr1[i] = arr1[i] ** 2;
         console.log(arr1[i]);
-    } else {
-        if (arr1[i] % 3 === 0) {
-            arr1[i] = arr1[i] ** 3;
-            console.log(arr1[i]);
-        }
+    } else if (arr1[i] % 3 === 0) {
+        arr1[i] = arr1[i] ** 3;
+        console.log(arr1[i]);
     }
 }
 
@@ -157,6 +162,11 @@ for (let i = 0; i < arr2.length; i++) {
     }
 }
 console.log(sum);
+
+sum = null;
+
+let result = arr2.filter(x => x == 3);
+console.log(result.length);
 
 let arr3 = [1, 2, 3, 4, 5];
 arr3.splice(1, 2);

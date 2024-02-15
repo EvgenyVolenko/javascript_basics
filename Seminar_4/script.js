@@ -159,5 +159,5 @@ for (let i = 0; i < arr2.length; i++) {
 console.log(sum);
 
 let arr3 = [1, 2, 3, 4, 5];
-arr3.slice(1, 2);
+arr3.splice(1, 2);
 console.log(arr3);

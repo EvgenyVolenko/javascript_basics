@@ -52,10 +52,9 @@ ulList.addEventListener('click', function (e) {
 // 7. С помощью JS необходимо изменить цвет заднего фона каждого второго тега li.
 
 const liList = ulList.querySelectorAll('li');
-let liEl = null;
+
 for (let i = 0; i < liList.length; i++) {
     if (i % 2) {
-        liEl = liList[i];
-        liEl.style.background = 'green';
+        liList[i].style.background = 'green';
     };
 };

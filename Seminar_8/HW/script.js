@@ -23,9 +23,6 @@ bodyEl.onclick = function (e) {
     if (!superElement) {
         return;
     };
-    if (!bodyEl.contains(superElement)) {
-        return;
-    };
     const rezult = `Класс ${e.target.className} присутствует в элементе ${superElement.tagName.toLowerCase()}`;
     console.log(rezult);
 };

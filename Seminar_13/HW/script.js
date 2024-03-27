@@ -53,7 +53,7 @@ const findElementByClass = function (element, className) {
         }
     }
     return res[0];
-}
+};
 
 const saver = function () {
     return {
@@ -65,7 +65,7 @@ const saver = function () {
             return this.saverArr[num];
         }
     }
-}
+};
 
 const saved = saver();
 
@@ -79,7 +79,7 @@ const findElementByClassMy = function (element, className) {
         }
     }
     return saved.returnEl(0);
-}
+};
 
 const rootElement = document.getElementById('root');
 const targetElement = findElementByClass(rootElement, 'my-class');

@@ -55,7 +55,35 @@ const findElementByClass = function (element, className) {
     return res[0];
 }
 
+const saver = function () {
+    return {
+        saverArr: [],
+        add(el) {
+            this.saverArr.push(el);
+        },
+        returnEl(num) {
+            return this.saverArr[num];
+        }
+    }
+}
+
+const saved = saver();
+
+const findElementByClassMy = function (element, className) {
+    if (element.classList.contains(className)) {
+        saved.add(element);
+    }
+    else {
+        for (let el of element.children) {
+            findElementByClassMy(el, className);
+        }
+    }
+    return saved.returnEl(0);
+}
+
 const rootElement = document.getElementById('root');
 const targetElement = findElementByClass(rootElement, 'my-class');
-
 console.log(targetElement);
+
+const targetElementMy = findElementByClassMy(rootElement, 'my-class');
+console.log(targetElementMy);

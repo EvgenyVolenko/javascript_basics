@@ -35,19 +35,19 @@ console.log(createC.counter);
 // const targetElement = findElementByClass(rootElement, 'my-class');
 // console.log(targetElement);
 
-function* traversePreOrder(element) {
+const iteratorForChild = function* (element) {
     if (!element) {
         return;
     }
     yield element;
     for (let child of element.children) {
-        yield* traversePreOrder(child);
+        yield* iteratorForChild(child);
     }
 };
 
 const findElementByClass = function (element, className) {
     let res = [];
-    for (let el of traversePreOrder(element)) {
+    for (let el of iteratorForChild(element)) {
         if (el.classList.contains(className)) {
             res.push(el);
         }

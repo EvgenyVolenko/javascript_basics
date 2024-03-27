@@ -35,28 +35,27 @@ console.log(createC.counter);
 // const targetElement = findElementByClass(rootElement, 'my-class');
 // console.log(targetElement);
 
-const findElementByClass = function (element, className) {
-    if (!element) return;
-    if (element.classList.contains(className)) {
-        return element;
+function* traversePreOrder(element) {
+    if (!element) {
+        return;
     }
-
-    let findedEl = null;
-
-    labelCancel: for (let el of element.children) {
-        if (el.classList.contains(className)) {
-            console.log(el);
-            findedEl = el;
-            break labelCancel;
-        }
-        findElementByClass(el, className);
-    };
-
-    return findedEl;
+    yield element;
+    for (let child of element.children) {
+        yield* traversePreOrder(child);
+    }
 };
 
+const findElementByClass = function (element, className) {
+    let res = [];
+    for (let el of traversePreOrder(element)) {
+        if (el.classList.contains(className)) {
+            res.push(el);
+        }
+    }
+    return res[0];
+}
+
 const rootElement = document.getElementById('root');
-// console.log(rootElement);
-// console.log(rootElement.querySelector('.my-class'));
 const targetElement = findElementByClass(rootElement, 'my-class');
+
 console.log(targetElement);

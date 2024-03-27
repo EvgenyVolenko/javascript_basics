@@ -69,21 +69,21 @@ const saver = function () {
 
 const saved = saver();
 
-const findElementByClassMy = function (element, className) {
+const findElementByClassMy = function (element, className, savedMy) {
     if (element.classList.contains(className)) {
-        saved.add(element);
+        savedMy.add(element);
     }
     else {
         for (let el of element.children) {
-            findElementByClassMy(el, className);
+            findElementByClassMy(el, className, savedMy);
         }
     }
-    return saved.returnEl(0);
+    return savedMy.returnEl(0);
 };
 
 const rootElement = document.getElementById('root');
 const targetElement = findElementByClass(rootElement, 'my-class');
 console.log(targetElement);
 
-const targetElementMy = findElementByClassMy(rootElement, 'my-class');
+const targetElementMy = findElementByClassMy(rootElement, 'my-class', saved);
 console.log(targetElementMy);

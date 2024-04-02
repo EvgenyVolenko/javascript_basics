@@ -118,6 +118,9 @@ class ZooAnimal {
         this.#name = newName;
     }
     changeAge(newAge) {
+        if (newAge > ZooAnimal.#MAX_AGE) {
+            throw new Error(`Ошибка при ИЗМЕНЕНИИ возраста экземпляра класса. Возраст животного не может быть больше ${ZooAnimal.#MAX_AGE}`);
+        }
         this.#age = newAge;
     }
 
@@ -133,7 +136,7 @@ class ZooAnimal {
 const animal1 = new ZooAnimal('Вася', 15, 'м');
 console.log(`Кличка - ${animal1.name}, возраст - ${animal1.age}, пол - ${animal1.gender}`);
 animal1.changeName('Васёк');
-animal1.changeAge(16);
+animal1.changeAge(7);
 console.log(`Кличка - ${animal1.name}, возраст - ${animal1.age}, пол - ${animal1.gender}`);
 
 console.log(animal1.toString());

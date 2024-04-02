@@ -124,6 +124,10 @@ class ZooAnimal {
     get name() { return this.#name; }
     get age() { return this.#age; }
     get gender() { return this.#gender; }
+
+    toString() {
+        return `Кличка - ${this.name}, возраст - ${this.age}, пол - ${this.gender}. Переопределен toString()`;
+    }
 }
 
 const animal1 = new ZooAnimal('Вася', 15, 'м');
@@ -131,5 +135,7 @@ console.log(`Кличка - ${animal1.name}, возраст - ${animal1.age}, п
 animal1.changeName('Васёк');
 animal1.changeAge(16);
 console.log(`Кличка - ${animal1.name}, возраст - ${animal1.age}, пол - ${animal1.gender}`);
+
+console.log(animal1.toString());
 
 const animal2 = new ZooAnimal('Рита', 5, 'n');

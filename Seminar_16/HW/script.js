@@ -42,3 +42,32 @@ usersList.forEach(element => {
 
 // Необходимо реализовать отрисовку 10 картинок собак из API https://dog.ceo/dog-api/ с интервалом в 3 секунды.
 
+const urlDogs = 'https://dog.ceo/api/breeds/image/random';
+
+const getDataDog = async (source) => {
+    try {
+        const result = await fetch(source);
+        const dataDogs = await result.json();
+        return dataDogs;
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const dogsImages = document.querySelector('.dogs-img');
+
+const sleep = function (ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+const getDog = async () => {
+    const dog = await getDataDog(urlDogs);
+    dogsImages.insertAdjacentHTML('beforeend', `<figure>
+    <img src="${dog.message}">
+    </figure>`);
+    await sleep(3000);
+}
+
+for (let i = 0; i < 10; i++) {
+    await getDog();
+}

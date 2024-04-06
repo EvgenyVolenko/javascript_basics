@@ -57,7 +57,7 @@ const getDataDog = async (source) => {
 const dogsImages = document.querySelector('.dogs-img');
 
 const sleep = function (ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(function (resolve) { setTimeout(resolve, ms) });
 }
 
 const getDog = async () => {

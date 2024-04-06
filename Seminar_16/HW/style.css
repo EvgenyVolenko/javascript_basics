@@ -1,0 +1,9 @@
+p {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.item {
+    color: brown;
+    cursor: pointer;
+}

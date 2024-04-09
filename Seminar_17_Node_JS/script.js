@@ -13,14 +13,12 @@ const server = http.createServer((req, res) => {
             'Content-Type': 'text/html; charset=UTF8'
         });
         res.end(index);
-        // indexCounter++;
         console.log('Количество обращений к Главной странице ' + ++indexCounter);
     } else if (req.url === '/about') {
         res.writeHead(200, {
             'Content-Type': 'text/html; charset=UTF8'
         });
         res.end(about);
-        // aboutCounter++;
         console.log('Количество обращений к странице About ' + ++aboutCounter);
     } else {
         res.writeHead(404, {

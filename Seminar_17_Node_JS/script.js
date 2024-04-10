@@ -8,11 +8,7 @@ let indexCounter = 0;
 let aboutCounter = 0;
 
 const counterWeb = function (page, count) {
-    if (page === '/') {
-        return index + `<h3>Страница "${page}" была вызвана ${count} раз!!!</h3>`;
-    } else if (page === 'about') {
-        return about + `<h3>Страница "${page}" была вызвана ${count} раз!!!</h3>`;
-    }
+    return `<h3>Страница "${page}" была вызвана ${count} раз!!!</h3>`;
 }
 
 const server = http.createServer((req, res) => {
@@ -20,12 +16,12 @@ const server = http.createServer((req, res) => {
         res.writeHead(200, {
             'Content-Type': 'text/html; charset=UTF8'
         });
-        res.end(counterWeb('/', ++indexCounter));
+        res.end(index + counterWeb('/', ++indexCounter));
     } else if (req.url === '/about') {
         res.writeHead(200, {
             'Content-Type': 'text/html; charset=UTF8'
         });
-        res.end(counterWeb('about', ++aboutCounter));
+        res.end(about + counterWeb('about', ++aboutCounter));
     } else {
         res.writeHead(404, {
             'Content-Type': 'text/html; charset=UTF8'

@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "volquadraticequation": "^1.1.0"
+    "volquadraticequation": "^1.1.3"
   }
 }

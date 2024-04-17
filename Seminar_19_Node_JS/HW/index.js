@@ -14,21 +14,23 @@ let counters = {
 
 const pathToFile = path.join(__dirname, 'counters.json ');
 
-let countersDataJson = '';
+// try {
+//     counters = JSON.parse(fs.readFileSync(pathToFile, 'utf8'));
+// } catch (err) {
+//     if (err.code === 'ENOENT') {
+//         console.log('File not found! Created new file');
+//     } else {
+//         throw err;
+//     }
+//     fs.writeFileSync(pathToFile, JSON.stringify(counters, null, 2));
+// }
 
-try {
-    countersDataJson = fs.readFileSync(pathToFile, 'utf8');
-} catch (err) {
-    if (err.code === 'ENOENT') {
-        console.log('File not found! Created new file');
-    } else {
-        throw err;
-    }
+if (!fs.existsSync(pathToFile)) {
     fs.writeFileSync(pathToFile, JSON.stringify(counters, null, 2));
-    countersDataJson = fs.readFileSync(pathToFile, 'utf8');
+    console.log('File not found! Created new file');
+} else {
+    counters = JSON.parse(fs.readFileSync(pathToFile, 'utf8'));
 }
-
-counters = JSON.parse(countersDataJson);
 
 app.get('/', (req, res) => {
     counters.index++;
@@ -40,6 +42,10 @@ app.get('/about', (req, res) => {
     counters.about++;
     res.send(`<h1>Страница about</h1><p>Просмотров: ${counters.about}</p><a href='/'>Ссылка на страницу /</a>`);
     fs.writeFileSync(pathToFile, JSON.stringify(counters, null, 2));
+});
+
+app.use((req, res) => {
+    res.status(404).send("<h1>Страница не найдена</h1>")
 });
 
 app.listen(port, () => console.log(`Server started at port ${port}`));

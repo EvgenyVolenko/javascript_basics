@@ -25,11 +25,11 @@ const pathToFile = path.join(__dirname, 'counters.json ');
 //     fs.writeFileSync(pathToFile, JSON.stringify(counters, null, 2));
 // }
 
-if (!fs.existsSync(pathToFile)) {
+if (fs.existsSync(pathToFile)) {
+    counters = JSON.parse(fs.readFileSync(pathToFile, 'utf8'));
+} else {
     fs.writeFileSync(pathToFile, JSON.stringify(counters, null, 2));
     console.log('File not found! Created new file');
-} else {
-    counters = JSON.parse(fs.readFileSync(pathToFile, 'utf8'));
 }
 
 app.get('/', (req, res) => {

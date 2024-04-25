@@ -7,16 +7,24 @@ data.forEach(el => {
 });
 
 shedules.addEventListener('click', function (e) {
-    if (e.target.textContent == 'Записаться') {
-        const itemShedule = e.target.closest('.shedule__item');
-        const placesTotal = itemShedule.querySelector('.places_total > span');
-        const placesOccupied = itemShedule.querySelector('.places_occupied > span');
-        const buttonSignUp = itemShedule.querySelector('.button_SignUp');
 
+    const itemShedule = e.target.closest('.shedule__item');
+    const placesTotal = itemShedule.querySelector('.places_total > span');
+    const placesOccupied = itemShedule.querySelector('.places_occupied > span');
+    const buttonSignUp = itemShedule.querySelector('.button_SignUp');
+
+    if (e.target.textContent == 'Записаться') {
         placesOccupied.textContent = Number(placesOccupied.textContent) + 1;
+        buttonSignUp.classList.remove('btn-primary');
         buttonSignUp.classList.add('btn-success', 'disabled');
         buttonSignUp.textContent = 'Вы записаны';
         checkButtonSignUP(Number(placesOccupied.textContent), Number(placesTotal.textContent), buttonSignUp);
+    }
+    if (e.target.textContent == 'Отменить запись' && buttonSignUp.textContent == 'Вы записаны') {
+        placesOccupied.textContent = Number(placesOccupied.textContent) - 1;
+        buttonSignUp.textContent = 'Записаться';
+        buttonSignUp.classList.remove('btn-success', 'disabled');
+        buttonSignUp.classList.add('btn-primary');
     }
 });
 
@@ -45,7 +53,7 @@ function createShedule(nameShedule, timeStart, timeEnd, placesTotal, placesOccup
     item.classList.add('shedule__item', 'pt-4');
     placesTotalEl.classList.add('places_total');
     placesOccupiedEl.classList.add('places_occupied');
-    buttons.classList.add('d-flex', 'gap-5');
+    buttons.classList.add('d-flex', 'gap-5', 'buttons');
     checkButtonSignUP(placesOccupied, placesTotal, buttonSignUp);
     buttonСancel.classList.add('button_cancel', 'btn', 'btn-danger');
 

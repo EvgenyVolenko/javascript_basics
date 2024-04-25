@@ -1,42 +1,72 @@
 const data = JSON.parse(dataBase);
 const shedules = document.querySelector('div.shedules__box');
 
-data.forEach(element => {
-
-    const item = document.createElement('div');
-    const nameShedule = document.createElement('h2');
-    const time = document.createElement('div');
-    const timeStart = document.createElement('p');
-    const timeEnd = document.createElement('p');
-    const places = document.createElement('div');
-    const placesTotal = document.createElement('p');
-    const placesOccupied = document.createElement('p');
-
-    nameShedule.textContent = element.nameShedule;
-    timeStart.textContent = 'Время начала: ' + element.timeStart;
-    timeEnd.textContent = 'Время завершения: ' + element.timeEnd;
-    placesTotal.textContent = 'Количество мест: ' + element.placesTotal;
-    placesOccupied.textContent = 'Мест занято: ' + element.placesOccupied;
-
-    item.classList.add('pt-4');
-
-    const buttonSignUp = document.createElement('button');
-    buttonSignUp.textContent = 'Записаться';
-    buttonSignUp.classList.add('btn', 'btn-warning');
-
-    const buttonСancel = document.createElement('button');
-    buttonСancel.textContent = 'Отменить запись';
-    buttonСancel.classList.add('btn', 'btn-danger');
-
-    time.append(timeStart);
-    time.append(timeEnd);
-    places.appendChild(placesTotal);
-    places.appendChild(placesOccupied);
-    item.appendChild(nameShedule);
-    item.appendChild(time);
-    item.appendChild(places);
-    item.appendChild(buttonSignUp);
-    item.appendChild(buttonСancel);
-        
+data.forEach(el => {
+    const item = createShedule(el.nameShedule, el.timeStart, el.timeEnd, el.placesTotal, el.placesOccupied);
     shedules.appendChild(item);
 });
+
+shedules.addEventListener('click', function (e) {
+    if (e.target.textContent == 'Записаться') {
+        const itemShedule = e.target.closest('.shedule__item');
+        const placesTotal = itemShedule.querySelector('.places_total > span');
+        const placesOccupied = itemShedule.querySelector('.places_occupied > span');
+        const buttonSignUp = itemShedule.querySelector('.button_SignUp');
+
+        placesOccupied.textContent = Number(placesOccupied.textContent) + 1;
+        checkButtonSignUP(Number(placesOccupied.textContent), Number(placesTotal.textContent), buttonSignUp);
+    }
+});
+
+function createShedule(nameShedule, timeStart, timeEnd, placesTotal, placesOccupied) {
+
+    const item = document.createElement('div');
+    const nameSheduleEl = document.createElement('h2');
+    const time = document.createElement('div');
+    const timeStartEl = document.createElement('p');
+    const timeEndEl = document.createElement('p');
+    const places = document.createElement('div');
+    const placesTotalEl = document.createElement('p');
+    const placesOccupiedEl = document.createElement('p');
+    const buttons = document.createElement('div');
+    const buttonSignUp = document.createElement('button');
+    const buttonСancel = document.createElement('button');
+
+    nameSheduleEl.textContent = nameShedule;
+    timeStartEl.textContent = 'Время начала: ' + timeStart;
+    timeEndEl.textContent = 'Время завершения: ' + timeEnd;
+    placesTotalEl.innerHTML = 'Количество мест: ' + '<span>' + placesTotal + '</span>';
+    placesOccupiedEl.innerHTML = 'Мест занято: ' + '<span>' + placesOccupied + '</span>';
+    buttonSignUp.textContent = 'Записаться';
+    buttonСancel.textContent = 'Отменить запись';
+
+    item.classList.add('shedule__item', 'pt-4');
+    placesTotalEl.classList.add('places_total');
+    placesOccupiedEl.classList.add('places_occupied');
+    buttons.classList.add('d-flex', 'gap-5');
+    checkButtonSignUP(placesOccupied, placesTotal, buttonSignUp);
+    buttonСancel.classList.add('button_cancel', 'btn', 'btn-danger');
+
+    time.append(timeStartEl);
+    time.append(timeEndEl);
+    places.appendChild(placesTotalEl);
+    places.appendChild(placesOccupiedEl);
+    buttons.append(buttonSignUp);
+    buttons.append(buttonСancel);
+    item.appendChild(nameSheduleEl);
+    item.appendChild(time);
+    item.appendChild(places);
+    item.appendChild(buttons);
+
+    return item;
+}
+
+function checkButtonSignUP(placesOccupied, placesTotal, button) {
+    if (placesOccupied < placesTotal) {
+        button.classList.remove('btn-outline-secondary', 'disabled');
+        button.classList.add('button_SignUp', 'btn', 'btn-primary');
+    } else {
+        button.classList.remove('btn-primary');
+        button.classList.add('button_SignUp', 'btn', 'btn-outline-secondary', 'disabled');
+    }
+}

@@ -6,7 +6,7 @@ const dataBase = `
         "timeStart": "10-00",
         "timeEnd": "12-00",
         "placesTotal": 30,
-        "placesOccupied": 15
+        "placesOccupied": 29
     },
     {
         "id": 2,

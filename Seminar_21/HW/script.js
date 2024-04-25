@@ -14,6 +14,7 @@ shedules.addEventListener('click', function (e) {
         const buttonSignUp = itemShedule.querySelector('.button_SignUp');
 
         placesOccupied.textContent = Number(placesOccupied.textContent) + 1;
+        buttonSignUp.classList.add('btn-success', 'disabled');
         checkButtonSignUP(Number(placesOccupied.textContent), Number(placesTotal.textContent), buttonSignUp);
     }
 });
@@ -62,11 +63,13 @@ function createShedule(nameShedule, timeStart, timeEnd, placesTotal, placesOccup
 }
 
 function checkButtonSignUP(placesOccupied, placesTotal, button) {
-    if (placesOccupied < placesTotal) {
-        button.classList.remove('btn-outline-secondary', 'disabled');
-        button.classList.add('button_SignUp', 'btn', 'btn-primary');
-    } else {
-        button.classList.remove('btn-primary');
-        button.classList.add('button_SignUp', 'btn', 'btn-outline-secondary', 'disabled');
+    if (!button.classList.contains('btn-success')) {
+        if (placesOccupied < placesTotal) {
+            button.classList.remove('btn-outline-secondary', 'disabled');
+            button.classList.add('button_SignUp', 'btn', 'btn-primary');
+        } else {
+            button.classList.remove('btn-primary');
+            button.classList.add('button_SignUp', 'btn', 'btn-outline-secondary', 'disabled');
+        }
     }
 }

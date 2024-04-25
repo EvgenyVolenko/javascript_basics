@@ -10,7 +10,7 @@ const dataBase = `
     },
     {
         "id": 2,
-        "nameShedule": "Каратэ",
+        "nameShedule": "Карате",
         "timeStart": "13-00",
         "timeEnd": "15-00",
         "placesTotal": 20,

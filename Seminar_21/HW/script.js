@@ -15,6 +15,7 @@ shedules.addEventListener('click', function (e) {
 
         placesOccupied.textContent = Number(placesOccupied.textContent) + 1;
         buttonSignUp.classList.add('btn-success', 'disabled');
+        buttonSignUp.textContent = 'Вы записаны';
         checkButtonSignUP(Number(placesOccupied.textContent), Number(placesTotal.textContent), buttonSignUp);
     }
 });

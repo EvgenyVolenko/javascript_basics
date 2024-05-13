@@ -1,0 +1,5 @@
+const allKeys= `[
+{
+    "ACCESS_KEY": "RGWdxNzippe5K8oAmyh0IvB0aZpvc2ubb9TwiPlhh84"
+}
+]`;

@@ -36,6 +36,7 @@ const fillFeedbacks = function (block, productFeedbacks) {
 startProductsData.forEach(product => {
     const productTitle = document.createElement('li');
     productTitle.textContent = product.title;
+    productTitle.style.cursor = 'pointer';
     productTitle.addEventListener('click', () => {
         fillFeedbacks(feedackList, product.feedbacks);
     });

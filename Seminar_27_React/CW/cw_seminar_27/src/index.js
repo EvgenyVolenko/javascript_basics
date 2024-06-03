@@ -2,15 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import Message from './components/Message';
 import reportWebVitals from './reportWebVitals';
-
-const myMessage = 'Переданное через пропс сообщение!!!';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Message message={myMessage} />
     <App />
   </React.StrictMode>
 );

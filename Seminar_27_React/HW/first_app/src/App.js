@@ -1,4 +1,5 @@
 import './App.css';
+import Message from './components/Message';
 
 const myMessage1 = 'Переданное через пропс сообщение!!! в App.js';
 
@@ -11,12 +12,4 @@ function App() {
   );
 }
 
-function Message(props) {
-  return (
-    <div className="App-header">
-      <p>My_message - {props.message}</p>
-    </div>
-  );
-}
-
-export { App as default, Message };
+export default App;

@@ -17,7 +17,7 @@ function CommentsList() {
         { id: 3, text: "Это третий комментарий" }
     ]);
 
-        const delComment = (idToRemove) => {
+    const delComment = (idToRemove) => {
         setComments(comments.filter((comment) => comment.id !== idToRemove));
     }
 

@@ -9,7 +9,6 @@
 
 import React, { useState } from 'react';
 
-
 function CommentsList() {
 
     const [comments, setComments] = useState([
@@ -18,29 +17,16 @@ function CommentsList() {
         { id: 3, text: "Это третий комментарий" }
     ]);
 
-    const delCommentHTML = (e) => {
-        const itemKey = e.target.parentElement.getAttribute('keyValue');
-        delCommentList(itemKey);
-        e.target.parentNode.remove();
-        console.log(comments);
-    }
-
-    const delCommentList = (id) => {
-        for (let i = 0; i < comments.length; i++) {
-
-            if (comments[i].id === Number(id)) {
-                comments.splice(i, 1);
-            }
-        }
+    const delComment = (idToRemove) => {
+        setComments(comments.filter((comment) => comment.id !== idToRemove));
     }
 
     return comments.map((comment) =>
-        <div key={comment.id} keyValue={comment.id}>
+        <div key={comment.id}>
             <div>Id - {comment.id}. Комментарий - {comment.text}</div>
-            <button onClick={delCommentHTML}>Удалить комментарий</button>
+            <button onClick={() => delComment(comment.id)}>Удалить комментарий</button>
         </div>
     );
-
 }
 
 export default CommentsList;

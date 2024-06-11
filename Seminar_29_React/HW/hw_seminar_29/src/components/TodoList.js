@@ -15,6 +15,7 @@ import { toDoList } from './data';
 import { useState } from "react";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { CardItem } from './Card&Other';
 
 function TodoList() {
 
@@ -44,6 +45,10 @@ function TodoList() {
         setCurrentTodo(e.target.value);
     };
 
+    const delTodo = (idToRemove) => {
+        setTodos(todos.filter((todo) => todo.id !== idToRemove));
+    }
+
     return (
         <div>
             <form onSubmit={addTodo}>
@@ -63,7 +68,10 @@ function TodoList() {
                 </Button>
             </form>
             <ul>
-                {todos.map((todo) => (<li key={todo.id}>Номер задачи - {todo.id}. Содержание - {todo.content}</li>))}
+                {todos.map((todo) => (
+                    <li key={todo.id} >
+                        <CardItem content={todo.content} id={todo.id} delTodoFunc={delTodo} />
+                    </li>))}
             </ul>
         </div>
     );

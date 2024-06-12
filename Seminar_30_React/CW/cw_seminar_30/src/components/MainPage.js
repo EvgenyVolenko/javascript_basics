@@ -15,7 +15,6 @@ const MainPage = () => (
         <div>
             <h1>Просмотр списка</h1>
             <Routes>
-                {/* <Route path='*' element={`<div>Привет</div>`} /> */}
                 <Route path="*" element={<ListPage list={list} />} />
                 <Route path="/details/:id" element={<DetailPage list={list} />} />
             </Routes>

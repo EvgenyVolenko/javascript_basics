@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UserContext, ThemeContext } from "./MyApp";
-import classes from './Profile.module.css'
+import classes from './Profile.module.css';
 
 function Header() {
 

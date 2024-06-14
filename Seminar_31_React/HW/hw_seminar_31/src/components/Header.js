@@ -1,16 +1,16 @@
-import { useContext } from "react";
-import { UserContext, ThemeContext } from "./MyApp";
-import classes from './Profile.module.css'
+import { useSelector } from 'react-redux';
+import styles from './my.module.css';
 
 function Header() {
 
-    const userName = useContext(UserContext);
-    const theme = useContext(ThemeContext);
+    const theme = useSelector((state) => state.switch.value);
 
     return (
-        <div className={theme === 'light' ? `${classes.light}` : `${classes.dark}`}>
-            <h2>Привет, {userName}</h2>
-        </div>
+        <>
+            <div className={theme === false ? `${styles.light}` : `${styles.dark}`}>
+                <h2>Привет!!!</h2>
+            </div>
+        </>
     );
 }
 

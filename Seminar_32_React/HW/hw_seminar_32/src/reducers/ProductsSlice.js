@@ -15,7 +15,6 @@ export const productsSlice = createSlice({
                     elem.description = product.description;
                     elem.price = product.price;
                     elem.available = product.available;
-                    console.log(elem.id);
                     check = true;
                 }
             });

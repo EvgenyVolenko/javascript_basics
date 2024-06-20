@@ -29,6 +29,8 @@ function AddProduct() {
         const available = formData.get('available') === null ? false : true;
         const price = formData.get('price');
         dispatch(addProduct({ id: id, name: name, description: description, available: available, price: price }));
+        const button = document.querySelector('.button');
+        button.innerText = 'Add product';
     }
 
     return (
@@ -84,7 +86,7 @@ function AddProduct() {
                     <input type="checkbox" name="available" />
                 </label>
 
-                <button className='button' type="submit" style={{ width: '120px' }}>Add product</button>
+                <button name='button' className='button' type="submit" style={{ width: '120px' }}>Add product</button>
             </form>
         </div>
     );

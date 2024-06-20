@@ -17,17 +17,34 @@ function AddProduct() {
     }
 
     function submitProduct(formData) {
-        const id = setId(products);
+        let id = Number(formData.get('id'));
+        
+        if (formData.get('id') === null) {
+            id = setId(products);
+        } else {
+            id = formData.get('id');
+        }
         const name = formData.get('name');
         const description = formData.get('description');
         const available = formData.get('available') === null ? false : true;
-        console.log(name, description, available);
-        dispatch(addProduct({ id: id, name: name, description: description, available: available }));
+        const price = formData.get('price');
+        dispatch(addProduct({ id: id, name: name, description: description, available: available, price: price }));
     }
 
     return (
-        <>
+        <div className="newProduct">
             <form action={submitProduct} style={{ display: 'flex', flexDirection: 'column' }}>
+
+                <label  >
+                    id:
+                    <input
+                        type="number"
+                        name="id"
+                        id="id"
+                        readOnly={true}
+                    />
+                </label>
+
                 <label>
                     Название товара:
                     <input
@@ -52,13 +69,24 @@ function AddProduct() {
                 </label>
 
                 <label>
+                    Цена:
+                    <input
+                        type="number"
+                        name="price"
+                        id="price"
+                        placeholder="price"
+                        required
+                    />
+                </label>
+
+                <label>
                     Доступен ли товар
                     <input type="checkbox" name="available" />
                 </label>
 
-                <button type="submit" style={{ width: '100px' }}>Add product</button>
+                <button className='button' type="submit" style={{ width: '120px' }}>Add product</button>
             </form>
-        </>
+        </div>
     );
 }
 

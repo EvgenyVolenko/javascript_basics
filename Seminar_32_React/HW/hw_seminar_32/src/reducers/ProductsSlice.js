@@ -7,15 +7,25 @@ export const productsSlice = createSlice({
         array: []
     },
     reducers: {
-        addProduct: (state, action) => {
-            if (state.array.some((item) => item.id === action.payload.id)) {
-                return;
+        addProduct: (state, { payload: product }) => {
+            let check = false;
+            state.array.forEach(elem => {
+                if (elem.id === Number(product.id)) {
+                    elem.name = product.name;
+                    elem.description = product.description;
+                    elem.price = product.price;
+                    elem.available = product.available;
+                    console.log(elem.id);
+                    check = true;
+                }
+            });
+            if (!check) {
+                state.array.push(product);
             }
-            state.array.push(action.payload);
         },
         deleteProduct: (state, { payload: product }) => {
             state.array = state.array.filter((item) => {
-                return item.id !== product.id;
+                 return item.id !== product.id;
             });
         },
         changeAvailable: (state, { payload: product }) => {
@@ -24,7 +34,7 @@ export const productsSlice = createSlice({
                     elem.available = !elem.available;
                 }
             });
-        }
+        },
     }
 });
 

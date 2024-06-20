@@ -17,9 +17,9 @@ function AddProduct() {
     }
 
     function submitProduct(formData) {
-        let id = Number(formData.get('id'));
+        let id = null;
         
-        if (formData.get('id') === null) {
+        if (!formData.get('id')) {
             id = setId(products);
         } else {
             id = formData.get('id');

@@ -4,23 +4,16 @@ import { addProduct } from "../reducers/ProductsSlice";
 function AddProduct() {
 
     const dispatch = useDispatch();
-    const products = useSelector(state => state.products.array);
 
-    function setId(array) {
-        let maxId = 0;
-        array.forEach(element => {
-            if (element.id > maxId) {
-                maxId = element.id;
-            }
-        });
-        return ++maxId;
+    function setId() {
+        return Date.now();
     }
 
     function submitProduct(formData) {
         let id = null;
-        
+
         if (!formData.get('id')) {
-            id = setId(products);
+            id = setId();
         } else {
             id = formData.get('id');
         }

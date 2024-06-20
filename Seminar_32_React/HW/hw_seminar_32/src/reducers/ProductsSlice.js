@@ -17,9 +17,16 @@ export const productsSlice = createSlice({
             state.array = state.array.filter((item) => {
                 return item.id !== product.id;
             });
+        },
+        changeAvailable: (state, { payload: product }) => {
+            state.array.forEach(elem => {
+                if (elem.id === product.id) {
+                    elem.available = !elem.available;
+                }
+            });
         }
     }
 });
 
-export const { addProduct, deleteProduct } = productsSlice.actions;
+export const { addProduct, deleteProduct, changeAvailable } = productsSlice.actions;
 export default productsSlice.reducer;

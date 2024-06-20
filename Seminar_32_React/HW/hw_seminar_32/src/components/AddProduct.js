@@ -1,12 +1,23 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../reducers/ProductsSlice";
 
 function AddProduct() {
 
     const dispatch = useDispatch();
+    const products = useSelector(state => state.products.array);
+
+    function setId(array) {
+        let maxId = 0;
+        array.forEach(element => {
+            if (element.id > maxId) {
+                maxId = element.id;
+            }
+        });
+        return ++maxId;
+    }
 
     function submitProduct(formData) {
-        const id = 100;
+        const id = setId(products);
         const name = formData.get('name');
         const description = formData.get('description');
         const available = formData.get('available') === null ? false : true;

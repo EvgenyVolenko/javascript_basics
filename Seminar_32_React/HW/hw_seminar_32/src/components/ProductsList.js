@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct, changeAvailable, addProduct } from "../reducers/ProductsSlice";
+import { deleteProduct, changeAvailable } from "../reducers/ProductsSlice";
 
 function ProductsList() {
 
